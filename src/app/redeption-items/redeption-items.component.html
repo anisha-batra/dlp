@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <img class="thumb" [src]="recordBeingEdited.displayImage.value" />
+                <img class="thumb" *ngIf="recordBeingEdited.displayImage" [src]="recordBeingEdited.displayImage.value" />
         </form>
     </div>
     <div class="modal-footer">

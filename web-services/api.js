@@ -133,6 +133,22 @@ router.get('/members', function (req, res) {
     });
 });
 
+// RETRIEVE - BY EMAIL
+router.get('/memberByEmail/:email', function (req, res) {
+    console.log('Executing Web Service: Retrieve Member By Email');
+
+    MongoClient.connect(database_url, function (err, db) {
+        assert.equal(null, err);
+        db.collection('members').findOne({"email": req.params.email}, function (err, doc) {
+            assert.equal(err, null);
+            console.log("- Fetched Record: " + doc);
+
+            res.setHeader('Content-Type', 'application/json');
+            res.json(doc);
+        });
+    });
+});
+
 //==============================================================
 // RESTful WEB SERVICES - PARTNERS
 //==============================================================
@@ -314,6 +330,62 @@ router.get('/redemptionItems', function (req, res) {
     MongoClient.connect(database_url, function (err, db) {
         assert.equal(null, err);
         db.collection('redemptionItems').find({}).toArray(function (err, arrayOfDocs) {
+            assert.equal(err, null);
+            console.log("- All Retieved Records: " + arrayOfDocs);
+
+            res.setHeader('Content-Type', 'application/json');
+            res.json(arrayOfDocs);
+        });
+    });
+});
+
+//==============================================================
+// RESTful WEB SERVICES - MEMBER REDEMPTION ORDERS
+//==============================================================
+
+// CREATE
+router.post('/memberRedemptionOrder', function (req, res) {
+    console.log('Executing Web Service: Create Member Redemption Order');
+
+    var record = {
+        "memberId": req.body.memberId,
+        "redeemedOn": req.body.redeemedOn,
+        "redeemedItems": req.body.redeemedItems
+    };
+
+    MongoClient.connect(database_url, function (err, db) {
+        assert.equal(null, err);
+        db.collection('memberRedemptionOrders').insertOne(record, function (err, result) {
+            assert.equal(err, null);
+            console.log("- Added Record: " + record);
+            res.send({});
+        });
+    });
+});
+
+// RETRIEVE ALL
+router.get('/memberRedemptionOrders', function (req, res) {
+    console.log('Executing Web Service: Retrieve All Member Redemption Orders');
+
+    MongoClient.connect(database_url, function (err, db) {
+        assert.equal(null, err);
+        db.collection('memberRedemptionOrders').find({}).toArray(function (err, arrayOfDocs) {
+            assert.equal(err, null);
+            console.log("- All Retieved Records: " + arrayOfDocs);
+
+            res.setHeader('Content-Type', 'application/json');
+            res.json(arrayOfDocs);
+        });
+    });
+});
+
+// RETRIEVE ALL
+router.get('/memberRedemptionOrders/:memberId', function (req, res) {
+    console.log('Executing Web Service: Retrieve All Member Redemption Orders by Member Id: ' + req.params.memberId);
+
+    MongoClient.connect(database_url, function (err, db) {
+        assert.equal(null, err);
+        db.collection('memberRedemptionOrders').find({"memberId": req.params.memberId}).toArray(function (err, arrayOfDocs) {
             assert.equal(err, null);
             console.log("- All Retieved Records: " + arrayOfDocs);
 

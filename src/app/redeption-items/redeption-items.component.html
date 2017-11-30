@@ -10,6 +10,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Cost (in Points)</th>
@@ -19,6 +20,7 @@
             <tbody>
                 <tr *ngFor="let record of listOfAllRecords; let i = index">
                     <th scope="row">{{ i + 1 }}</th>
+                    <td><img class="thumb" height="35px" *ngIf="record.displayImage" [src]="record.displayImage.value" /></td>
                     <td>{{ record.name }}</td>
                     <td>{{ record.description }}</td>
                     <td>{{ record.costInPoints }}</td>
@@ -78,7 +80,7 @@
                         <div class="form-group">
                             <label for="displayImage">Display Image</label>
                             <input type="file" id="displayImage" (change)="onFileChange($event)" #fileInput>
-                            <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">clear file</button>
+                            <!-- <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">clear file</button> -->
                         </div>
                     </div>
                 </div>

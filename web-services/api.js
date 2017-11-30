@@ -4,7 +4,11 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const ObjectId = require('mongodb').ObjectID;
 
-const database_url = 'mongodb://localhost:27017/digital_loyalty_program';
+var database_url = 'mongodb://localhost:27017/digital_loyalty_program';
+if (process.argv.length > 2 && process.argv[2] === "production") {
+    console.log('Using AWS Settings for MongoDB Connection')
+    database_url = 'mongodb://user:OIXl8VZ04aNu@localhost:27017/digital_loyalty_program';
+}
 
 // Error handling
 const sendError = (err, res) => {

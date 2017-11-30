@@ -7,7 +7,7 @@ const ObjectId = require('mongodb').ObjectID;
 var database_url = 'mongodb://localhost:27017/digital_loyalty_program';
 if (process.argv.length > 2 && process.argv[2] === "production") {
     console.log('Using AWS Settings for MongoDB Connection')
-    database_url = 'mongodb://user:OIXl8VZ04aNu@localhost:27017/digital_loyalty_program';
+    database_url = 'mongodb://dlpuser:demo123@localhost:27017/digital_loyalty_program';
 }
 
 // Error handling

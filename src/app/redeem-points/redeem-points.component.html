@@ -8,7 +8,7 @@
           <p class="card-text">{{redemptionItem.description}}</p>
         </div>
         <div class="card-footer text-center">
-          <button class="btn btn-secondary" (click)="addToShoppingCart(redemptionItem)">
+          <button class="btn btn-secondary" [disabled]="listOfRedemptionItemsInShoppingCart.includes(redemptionItem)" (click)="addToShoppingCart(redemptionItem)">
             Add To Cart
             <small>({{redemptionItem.costInPoints}} Points)</small>
           </button>
@@ -28,8 +28,24 @@
         </ul>
       </div>
       <div class="card-footer text-center">
-        <button class="btn btn-primary">Confirm Checkout ({{ getTotalCostInPointsOfShoppingCart() }})</button>
+        <button class="btn btn-primary" [disabled]="listOfRedemptionItemsInShoppingCart.length == 0" (click)="confirmCheckout(modalViewForOrderSuccessMessage)">
+          Confirm Checkout ({{ getTotalCostInPointsOfShoppingCart() }})
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #modalViewForOrderSuccessMessage let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Success!</h4>
+    </div>
+    <div class="modal-body">
+      <ngb-alert type="success" [dismissible]="false">
+        Your order has been placed successfully!
+      </ngb-alert>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="closeModalViewForOrderSuccessMessage()">Close</button>
+    </div>
+  </ng-template>

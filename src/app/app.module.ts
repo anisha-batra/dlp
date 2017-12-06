@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Globals } from './globals'
 
 // Import HttpClientModule from @angular/common/http
 import {HttpClientModule} from '@angular/common/http';
@@ -10,16 +11,22 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { MembersComponent } from './members/members.component';
 import { PartnersComponent } from './partners/partners.component';
-import { HomeComponent } from './home/home.component';
+import { HomeAdminComponent } from './home.admin/home.admin.component';
 import { RedeptionItemsComponent } from './redeption-items/redeption-items.component';
 import { RedeemPointsComponent } from './redeem-points/redeem-points.component';
+import { HomeComponent } from './home/home.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { CouponsComponent } from './coupons/coupons.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'homeAdmin', component: HomeAdminComponent },
   { path: 'members', component: MembersComponent },
   { path: 'partners', component: PartnersComponent },
   { path: 'redemptionItems', component: RedeptionItemsComponent },
   { path: 'redeemPoints', component: RedeemPointsComponent },
+  { path: 'userDashboard', component: UserDashboardComponent },
+  { path: 'coupons', component: CouponsComponent },
 ];
 
 @NgModule({
@@ -27,9 +34,12 @@ const appRoutes: Routes = [
     AppComponent,
     MembersComponent,
     PartnersComponent,
-    HomeComponent,
+    HomeAdminComponent,
     RedeptionItemsComponent,
-    RedeemPointsComponent
+    RedeemPointsComponent,
+    HomeComponent,
+    UserDashboardComponent,
+    CouponsComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +51,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

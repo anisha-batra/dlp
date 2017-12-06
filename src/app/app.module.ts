@@ -26,7 +26,7 @@ const appRoutes: Routes = [
   { path: 'redemptionItems', component: RedeptionItemsComponent },
   { path: 'redeemPoints', component: RedeemPointsComponent },
   { path: 'userDashboard', component: UserDashboardComponent },
-  { path: 'coupons', component: CouponsComponent },
+  { path: 'coupons', component: CouponsComponent }
 ];
 
 @NgModule({
@@ -39,7 +39,7 @@ const appRoutes: Routes = [
     RedeemPointsComponent,
     HomeComponent,
     UserDashboardComponent,
-    CouponsComponent,
+    CouponsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,4 +54,5 @@ const appRoutes: Routes = [
   providers: [Globals],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
